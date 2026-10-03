@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hidar Menu</title>
+<meta name="theme-color" content="#efe3c9">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Young+Serif&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#efe3c9;--card:#fbf6e8;--ink:#2e1a12;--mute:#8a7058;--line:#e6d5b2;--brand:#5c0808;--gold:#d9a94a;--chip:#e4d3ad;--bar:rgba(239,227,201,.94);--price:#6e0d0d;--wood:#b0672f;--sage:#5f7d4e;--onsage:#fff;--head:#5c0808;--f1:#f9f0dc;--f2:#e9d9b4;--shadow:0 1px 2px rgba(92,8,8,.06),0 8px 22px rgba(120,80,30,.10);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c100c;--card:#2a1812;--ink:#f4e6d6;--mute:#bda28c;--line:#43281e;--chip:#34201a;--bar:rgba(28,16,12,.94);--price:#e8c360;--sage:#8fb07a;--onsage:#1c100c;--head:#f0d9b0;--f1:#3a2419;--f2:#291911;--shadow:none}}
+:root[data-theme="dark"]{--bg:#1c100c;--card:#2a1812;--ink:#f4e6d6;--mute:#bda28c;--line:#43281e;--chip:#34201a;--bar:rgba(28,16,12,.94);--price:#e8c360;--sage:#8fb07a;--onsage:#1c100c;--head:#f0d9b0;--f1:#3a2419;--f2:#291911;--shadow:none}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 118px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.45 Figtree,system-ui,sans-serif}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bar);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:12px 0 10px;border-bottom:1px solid var(--line)}
+.row{display:flex;gap:8px;padding:0 14px 10px;max-width:720px;margin:auto}
+input{flex:1;min-width:0;font:inherit;font-size:16px;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:99px;padding:11px 18px;-webkit-appearance:none}
+input::placeholder{color:var(--mute)}
+input:focus,button:focus-visible,a:focus-visible{outline:2px solid var(--price);outline-offset:2px}
+.fast{font:500 14px Figtree,sans-serif;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:99px;padding:0 16px;cursor:pointer;white-space:nowrap;min-height:44px}
+.fast[aria-pressed=true]{background:var(--brand);color:var(--gold);border-color:var(--brand)}
+nav{display:flex;gap:8px;overflow-x:auto;padding:0 14px;max-width:720px;margin:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{flex:none;text-decoration:none;color:var(--ink);background:var(--chip);border-radius:99px;padding:9px 16px;font-size:14px;font-weight:500;transition:background .2s,color .2s}
+nav a.on{background:var(--brand);color:var(--gold)}
+main{max-width:720px;margin:auto;padding:4px 14px 40px}
+section{background:var(--card);border-radius:24px;padding:22px 18px 8px;margin-top:16px;box-shadow:var(--shadow)}
+h2{font:400 26px/1.15 "Young Serif",Georgia,serif;margin:0 0 14px;color:var(--price)}
+h2::after{content:"";display:block;width:36px;height:3px;border-radius:3px;background:var(--gold);margin-top:8px}
+.note{margin:-6px 0 8px;color:var(--mute);font-size:14px}
+.item{padding:13px 0;border-bottom:1px solid var(--line)}
+section .item:last-child{border-bottom:0}
+.top{display:flex;align-items:baseline;gap:8px}
+.n{font-weight:500}
+.p{margin-left:auto;padding-left:8px;font-weight:600;color:var(--price);font-variant-numeric:tabular-nums}
+.d{margin:3px 0 0;color:var(--mute);font-size:14px;line-height:1.4}
+.f{font-size:11px;font-weight:600;color:var(--brand);background:var(--gold);border-radius:99px;padding:1px 8px;white-space:nowrap}
+#none{display:none;text-align:center;color:var(--mute);padding:48px 20px}
+footer{text-align:center;color:var(--mute);font-size:13px;padding:0 20px 40px}
+@media(min-width:640px){h1{font-size:40px}main{padding-left:20px;padding-right:20px}section{padding:28px 28px 12px}.n{font-size:17px}}
+
+header{position:relative;overflow:hidden;text-align:center;color:var(--head);padding:64px 20px 44px;border-radius:0 0 50% 50%/0 0 34px 34px;background:linear-gradient(180deg,rgba(255,255,255,.4),transparent 45%),repeating-linear-gradient(90deg,var(--f1) 0,var(--f2) 13px,var(--f1) 29px,var(--f2) 41px,var(--f1) 57px);box-shadow:0 10px 26px rgba(120,80,30,.16)}
+header::before{content:"";position:absolute;left:-10px;right:-10px;top:0;height:14px;background:linear-gradient(var(--wood),#8a4a1f);box-shadow:0 3px 8px rgba(0,0,0,.22)}
+header img{position:relative;width:92px;height:92px;border-radius:50%;display:block;margin:0 auto 14px;box-shadow:0 0 0 3px var(--gold),0 0 0 8px rgba(217,169,74,.28),0 12px 26px rgba(92,8,8,.3)}
+h1{position:relative;font:400 46px/1 "Young Serif",Georgia,serif;margin:0;letter-spacing:.5px}
+header p{position:relative;margin:8px 0 0;font-size:15px;font-weight:500;opacity:.85}
+.lamp{position:absolute;top:12px;transform-origin:50% 0;animation:sway 7s ease-in-out infinite;filter:drop-shadow(0 6px 8px rgba(60,30,10,.25))}
+@keyframes sway{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+h2::after{background:var(--wood)}
+.f{background:var(--sage);color:var(--onsage)}
+.fast[aria-pressed=true]{background:var(--sage);border-color:var(--sage);color:var(--onsage)}
+#top{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));width:46px;height:46px;border-radius:50%;border:0;background:var(--brand);color:var(--gold);display:grid;place-items:center;box-shadow:0 6px 18px rgba(92,8,8,.35);cursor:pointer;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .25s,transform .25s;z-index:9}
+#top.show{opacity:1;transform:none;pointer-events:auto}
+@media(prefers-reduced-motion:reduce){.lamp{animation:none}html{scroll-behavior:auto}#top{transition:none}}
+@media(min-width:640px){.lamp{transform-origin:50% 0}h1{font-size:56px}}
+
+[hidden]{display:none!important}
+header{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:72px 20px 64px}
+.go{position:relative;margin-top:26px;border:0;border-radius:99px;background:var(--brand);color:var(--gold);font:600 16px Figtree,sans-serif;padding:14px 28px;cursor:pointer;display:inline-flex;gap:8px;align-items:center;box-shadow:0 8px 20px rgba(92,8,8,.3)}
+.hint{position:relative;margin-top:12px;font-size:13px;opacity:.7}
+.item{display:flex;align-items:center;gap:12px}
+.info{flex:1;min-width:0}
+.side{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex:none}
+.p{margin:0;padding:0}
+.f{margin-left:6px}
+.info .d{margin-top:3px}
+.add{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--price);background:transparent;color:var(--price);font:500 22px/1 Figtree,sans-serif;cursor:pointer;display:grid;place-items:center;padding:0}
+.step{display:inline-flex;align-items:center;background:var(--brand);color:var(--gold);border-radius:99px;box-shadow:0 0 0 1px rgba(217,169,74,.4)}
+.step button{width:36px;height:36px;border:0;background:none;color:inherit;font:500 20px/1 Figtree,sans-serif;cursor:pointer;padding:0}
+.step b{min-width:18px;text-align:center;font-weight:600}
+footer{padding-bottom:100px}
+#cart{position:fixed;left:14px;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));max-width:692px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:12px;border:0;border-radius:99px;background:var(--brand);color:var(--gold);padding:14px 22px;font:600 16px Figtree,sans-serif;box-shadow:0 10px 28px rgba(92,8,8,.4),0 0 0 1px rgba(217,169,74,.35);z-index:10;cursor:pointer;transform:translateY(150%);transition:transform .3s}
+body.hc #cart{transform:none}
+body.hc #top{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+#cart .c{background:var(--gold);color:var(--brand);border-radius:99px;padding:1px 10px;margin-right:10px;font-size:14px}
+dialog{width:100%;max-width:720px;margin:auto auto 0;border:0;border-radius:28px 28px 0 0;padding:0;background:var(--card);color:var(--ink);max-height:90vh;max-height:90svh}
+dialog[open]{display:flex;flex-direction:column;animation:up .3s ease-out}
+dialog::backdrop{background:rgba(30,10,5,.55)}
+@keyframes up{from{transform:translateY(40px);opacity:0}}
+.sh-h{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:20px 20px 8px}
+.sh-h h3{font:400 25px "Young Serif",Georgia,serif;margin:0;color:var(--price)}
+.sh-h p{margin:4px 0 0;color:var(--mute);font-size:14px}
+.tb{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:14px;font-weight:500}
+#tb{flex:none;width:84px;padding:7px 14px}
+.x{flex:none;border:0;background:var(--chip);color:var(--ink);width:38px;height:38px;border-radius:50%;font-size:16px;cursor:pointer}
+#ol{overflow:auto;padding:4px 20px;flex:1}
+.o{display:flex;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line)}
+.o .q{font:400 26px/1 "Young Serif",Georgia,serif;color:var(--price);min-width:44px}
+.o .t{flex:1;font-size:18px;font-weight:500;line-height:1.25}
+.o .t small{display:block;color:var(--mute);font-size:13px;font-weight:400;margin-top:2px}
+.o .s{font-weight:600;font-variant-numeric:tabular-nums}
+.sh-f{padding:14px 20px calc(18px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line)}
+.tot{display:flex;justify-content:space-between;font-size:20px;font-weight:600;margin-bottom:12px}
+.acts{display:flex;gap:8px}
+.acts button{flex:1;min-height:46px;border-radius:99px;font:500 15px Figtree,sans-serif;cursor:pointer;border:1px solid var(--line);background:var(--chip);color:var(--ink)}
+.acts .pri{background:var(--brand);color:var(--gold);border-color:var(--brand)}
+
+body.pre{overflow:hidden}
+#intro{position:fixed;inset:0;z-index:60;display:grid;place-items:center;cursor:pointer}
+#intro::before{content:"";position:absolute;left:0;right:0;top:0;height:14px;background:linear-gradient(var(--wood),#8a4a1f);box-shadow:0 3px 8px rgba(0,0,0,.22);z-index:3}
+#intro i{position:absolute;top:0;bottom:0;width:50.4%;background:repeating-linear-gradient(90deg,var(--f1) 0,var(--f2) 13px,var(--f1) 29px,var(--f2) 41px,var(--f1) 57px);transition:transform 1.5s cubic-bezier(.75,0,.2,1);box-shadow:0 0 50px rgba(60,30,10,.4)}
+#intro .cl{left:0}#intro .cr{right:0}
+#intro.go .cl{transform:translateX(-102%)}#intro.go .cr{transform:translateX(102%)}
+#intro .mid{position:relative;z-index:2;text-align:center;color:var(--head);transition:opacity .5s,transform 1s}
+#intro.go .mid{opacity:0;transform:scale(1.25)}
+#intro img{width:104px;height:104px;border-radius:50%;box-shadow:0 0 0 3px var(--gold),0 0 0 9px rgba(217,169,74,.28),0 14px 30px rgba(92,8,8,.3);animation:logoIn 1s cubic-bezier(.2,.8,.2,1) both}
+#intro span{display:block;margin-top:18px;font:400 22px "Young Serif",Georgia,serif;animation:fadeIn .8s .5s both}
+@keyframes logoIn{from{opacity:0;transform:scale(.6)}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}}
+header img,h1,header p,.go,.hint{transition:opacity .9s ease,transform .9s cubic-bezier(.2,.8,.2,1)}
+header img{transition-delay:.7s}h1{transition-delay:.9s}header p{transition-delay:1.05s}.go{transition-delay:1.2s}.hint{transition-delay:1.35s}
+.pre header img,.pre h1,.pre header p,.pre .go,.pre .hint{opacity:0;transform:translateY(16px)}
+.lamp{translate:0 0;transition:translate 1.6s cubic-bezier(.2,.9,.3,1.15) .8s,opacity .8s .8s}
+.pre .lamp{translate:0 -90px;opacity:0}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s,transform .6s cubic-bezier(.2,.8,.2,1)}
+.rv.vis{opacity:1;transform:none}
+@keyframes pop{50%{transform:scale(1.16)}}
+.step,#cart .c{animation:pop .25s}
+.add:active{transform:scale(.88)}
+section{border:1px solid rgba(217,169,74,.28)}
+.sig{background:none;box-shadow:none;border:0;padding:22px 0 0;margin-top:8px}
+.sig h2{padding:0 4px}
+.rail{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -14px;padding:4px 18px 14px;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.sc{flex:none;width:200px;scroll-snap-align:start;border-radius:22px;padding:16px;background:linear-gradient(155deg,#721010,#430404);color:#f6e7c1;display:flex;flex-direction:column;gap:6px;min-height:156px;box-shadow:0 10px 24px rgba(92,8,8,.25);border:1px solid rgba(217,169,74,.4)}
+.sc small{opacity:.75;font-size:13px}
+.sc b{font:400 19px/1.2 "Young Serif",Georgia,serif;color:var(--gold)}
+.sc .side{margin-top:auto;flex-direction:row;justify-content:space-between;align-items:center;width:100%}
+.sc .p{color:#f6e7c1}
+.sc .add{border-color:var(--gold);color:var(--gold)}
+.sc .step{background:var(--gold);color:var(--brand);box-shadow:none}
+@media(prefers-reduced-motion:reduce){header img,h1,header p,.go,.hint,.lamp,.rv,#intro i{transition:none!important}.rv{opacity:1;transform:none}.step,#cart .c{animation:none}}
+:root{--tile:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 10'%3E%3Cpath d='M9 .5L17 5 9 9.5 1 5z' fill='%23b5532f'/%3E%3Cpath d='M9 2.8L12.4 5 9 7.2 5.6 5z' fill='%23fbf6e8'/%3E%3Ccircle cx='9' cy='5' r='.9' fill='%23d9a94a'/%3E%3C/svg%3E");--w:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 600' preserveAspectRatio='none'%3E%3Cpath d='M30 0C50 110 10 210 30 300S50 500 30 600' stroke='%23fff' stroke-opacity='.62' stroke-width='28' fill='none'/%3E%3Cpath d='M92 0C112 110 72 210 92 300S112 500 92 600' stroke='%23a98450' stroke-opacity='.17' stroke-width='24' fill='none'/%3E%3C/svg%3E")}
+header{color:#5c0808;border-radius:0;box-shadow:none;background:linear-gradient(180deg,rgba(255,255,255,.35),transparent 45%),var(--w) 0 0/120px 100% repeat-x,#f3e6c8}
+header::before{z-index:1}
+header::after{content:"";position:absolute;top:0;bottom:0;left:-50px;right:-50px;background:var(--w) 40px 0/170px 100% repeat-x;opacity:.55;animation:breeze 8s ease-in-out infinite alternate;pointer-events:none}
+header>*{z-index:2}
+@keyframes breeze{from{transform:translateX(-26px)}to{transform:translateX(26px)}}
+.arch{position:relative;width:min(88%,300px);padding:46px 16px 28px;border-radius:150px 150px 22px 22px;border:2px solid rgba(176,103,47,.55);background:linear-gradient(180deg,rgba(255,252,242,.72),rgba(255,248,230,.28));box-shadow:inset 0 0 0 6px rgba(251,246,232,.55),inset 0 0 0 7px rgba(176,103,47,.28),0 18px 40px rgba(120,80,30,.14);transition:opacity .9s .5s,transform 1s cubic-bezier(.2,.8,.2,1) .5s}
+.pre .arch{opacity:0;transform:scale(.94)}
+.arch img{margin-bottom:12px}
+.hem{position:absolute;left:0;bottom:-1px;width:100%;height:46px;fill:var(--bg);z-index:3}
+.olive{position:absolute;bottom:42px;z-index:2}
+.band{height:15px;background:var(--tile) repeat-x;background-size:27px 15px}
+h2::after{width:72px;height:10px;border-radius:0;background:var(--tile) repeat-x;background-size:18px 10px}
+.fo{display:block;margin:0 auto 8px;opacity:.9}
+#intro i{background:var(--w) 0 0/120px 100% repeat-x,#f1e3c3}
+#intro .cl{transform-origin:0 50%}#intro .cr{transform-origin:100% 50%}
+#intro.go .cl,#intro.go .cr{transform:scaleX(.1)}
+#intro.go{opacity:0;transition:opacity .4s 1.45s}
+#intro .mid{color:#5c0808}
+@media(prefers-reduced-motion:reduce){header::after{animation:none}.arch{transition:none}}
+</style>
+</head>
+<body class="pre">
+<div id="intro" aria-hidden="true"><i class="cl"></i><i class="cr"></i><div class="mid"><img alt=""><span id="gr"></span></div></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><pattern id="w" width="6" height="5" patternUnits="userSpaceOnUse"><rect width="6" height="5" fill="#a47443"/><path d="M0 4.5h6" stroke="#6f4723" stroke-width="1.2"/><path d="M3 0v5" stroke="#c19360" stroke-width=".8"/></pattern><symbol id="lamp" viewBox="0 0 60 120"><path d="M30 0v66" stroke="#6f4723" stroke-width="1.5"/><path d="M8 112C8 84 17 68 30 68s22 16 22 44z" fill="url(#w)"/><ellipse cx="30" cy="113" rx="17" ry="5" fill="#ffd88a"/></symbol><path id="lf" d="M0 0C6-6 16-6 22 0C16 6 6 6 0 0Z"/><symbol id="olive" viewBox="0 0 120 70"><path d="M3 63C34 59 68 44 112 14" stroke="#6b7a4a" stroke-width="2.2" fill="none"/><g fill="#7f9663"><use href="#lf" transform="translate(22 57) rotate(-52)"/><use href="#lf" transform="translate(22 57) rotate(22)"/><use href="#lf" transform="translate(46 49) rotate(-56)"/><use href="#lf" transform="translate(46 49) rotate(16)"/><use href="#lf" transform="translate(70 37) rotate(-58)"/><use href="#lf" transform="translate(70 37) rotate(12)"/><use href="#lf" transform="translate(94 23) rotate(-60)"/><use href="#lf" transform="translate(94 23) rotate(8)"/><use href="#lf" transform="translate(110 15) rotate(-36)"/></g><g fill="#3f4a26"><ellipse cx="40" cy="62" rx="3.6" ry="5"/><ellipse cx="64" cy="52" rx="3.6" ry="5"/><ellipse cx="86" cy="39" rx="3.6" ry="5"/></g></symbol></defs></svg>
+<header>
+<svg class="lamp" style="left:5%;animation-delay:-1s" width="46" height="92"><use href="#lamp"/></svg>
+<svg class="lamp" style="left:25%;animation-delay:-3.5s" width="32" height="64"><use href="#lamp"/></svg>
+<svg class="lamp" style="right:6%;animation-delay:-5s" width="54" height="108"><use href="#lamp"/></svg>
+<div class="arch"><img src="data:image/webp;base64,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" alt="Hidar logo">
+<h1>Hidar</h1>
+<p>Coffee, patisserie and dining</p></div>
+<button class="go" id="go">View menu <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+<span class="hint">Tap + on a dish to build your order</span>
+<svg class="olive" style="left:-8px" width="120" height="70" aria-hidden="true"><use href="#olive"/></svg>
+<svg class="olive" style="right:-8px;transform:scaleX(-1)" width="120" height="70" aria-hidden="true"><use href="#olive"/></svg>
+<svg class="hem" viewBox="0 0 1200 70" preserveAspectRatio="none" aria-hidden="true"><path d="M0 38C150 78 300 0 450 34S750 74 900 34 1100 4 1200 38V70H0Z"/></svg>
+</header>
+<div class="band"></div>
+<div class="bar">
+<div class="row"><input id="q" type="search" placeholder="Search the menu" aria-label="Search the menu"><button class="fast" id="fast" aria-pressed="false">ጾም Fasting</button></div>
+<nav id="nav" aria-label="Menu sections"></nav>
+</div>
+<main id="m"></main>
+<p id="none">Nothing matches that. Try another word.</p>
+<footer><svg class="fo" width="84" height="49" aria-hidden="true"><use href="#olive"/></svg>Hidar Coffee, Patisserie and Dining.<br>Prices in ETB. Items marked ጾም are fasting dishes.</footer>
+<button id="top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<button id="cart" aria-label="View your order"></button>
+<dialog id="sh" aria-labelledby="sht"><div class="sh-h"><div><h3 id="sht">Your order</h3><p>Show this screen to your waiter.</p><label class="tb">Table <input id="tb" inputmode="numeric" maxlength="4" placeholder="No."></label></div><button class="x" id="cx" aria-label="Close">&#10005;</button></div><div id="ol"></div><div class="sh-f"><div class="tot"><span>Total</span><span id="tt"></span></div><div class="acts"><button id="clr">Clear</button><button id="cp">Copy</button><button class="pri" id="dn">Add more</button></div></div></dialog>
+<script>
+const D=`#Breakfast
+Oats with Milk|700|Banana, strawberry
+Oats Fasting|700|Cinnamon powder, raisins
+Granola|750|Yoghurt, strawberry, banana, honey or maple syrup
+Brioche French Toast|800
+Omelet|750|Plain, with cheese or with vegetables. Hashbrown and toast on the side
+Scrambled Eggs|650|Plain, with cheese or with vegetables. Hashbrown and toast on the side
+Eggs Benedict|950|Hollandaise, two poached or fried eggs, roasted potato
+Hidar Protein|950|Avocado, chicken Spanish omelet, mushroom, toast
+Avocado Toast|650|Olive oil and sesame seed
+Avocado Toast with Egg|750|Boiled or fried
+Avocado Toast with Tuna|950
+Avocado Toast with Grilled Chicken|1200
+Avocado, Cream Cheese and Scrambled Egg|950
+Pancake with Fruits and Syrup|800
+Pancake with Chocolate and Caramel Syrup|900
+Waffle with Fresh Fruits and Syrup|800
+Waffle with Chocolate|850
+Waffle Chicken Breast|1250|Coleslaw and roasted potatoes
+Croissant with Omelet or Scrambled Egg and Cheese|850
+Croissant Chicken Sandwich with Cream|1250
+Croissant Steak with Fried Egg|1300
+Filet Mignon with Fried Egg|1350|Cream mustard pepper sauce
+Avocado Wrap|850
+Tuna Wrap|1300
+Foul|850
+Arabic Chechebsa|750
+Chocolate Crepes|800
+Crepes with Fruits and Syrup|850
+Extra Egg|150
+#Burgers
+Beef Smashed Cheeseburger|1400
+Butter Chicken Burger|1600
+Crispy Chicken Burger|1450
+Crispy Fried Fish Burger|1300
+Sliders with Cream of Mushroom Sauce|1650
+BBQ Cheeseburger|1600
+#Sandwiches
+Baguette Chicken Sandwich with BBQ|1450
+Grilled Chicken Sandwich with Cream|1500
+Pesto Chicken Avocado Sandwich|1600
+Baguette Steak Sandwich with BBQ Sauce|1500
+Butter Chicken Ciabatta Sandwich|1450
+Tuna Sandwich|1200
+Grilled Vegetable Sandwich|900
+#Pasta|Choose tagliatelle, penne or linguine
+Chicken Alfredo|1750
+Bolognese|1400
+Chicken Makhani|1650|Buttery tomato sauce
+Tuna Pasta|1450
+Arrabbiata|900
+Pesto|1400
+Spring Vegetable|900
+#Main Course
+Pepper Steak with Gravy|1900
+Farmer's Steak|1900|Tomato-based tagliatelle
+Grilled Chicken|1800|Homemade cream sauce
+Grilled Nile Perch|1600|Mustard cream pepper sauce
+Chicken Parmesan|1950|Gnocchi, pesto sauce
+#Snacks
+Lentil Samosa|600|4 pieces with dipping sauce
+Spring Roll|600|4 pieces with dipping sauce
+French Fries|700
+French Fries with Cheese|950
+Roasted Potato with Avocado|850
+#Salad
+Hidar Salad|1250
+Hidar Mixed Salad|1200
+Hidar Fasting Salad|1200
+#Hot Drinks
+Espresso|250
+Double Espresso|480
+Macchiato|220
+Double Macchiato|380
+Fasting Macchiato|380
+Fasting Double Macchiato|500
+Americano|220
+Coffee|220
+Cafe Latte|450
+Fasting Hot Latte|600
+Hot Caramel Latte|450
+Caramel Macchiato|250
+Hazelnut Macchiato|250
+V60|300
+Hot Chocolate|450
+Milk|250
+Hot Ube Latte|500
+Ube Cream Matcha Latte|700
+Matcha Hot Latte|500
+Matcha Macchiato|250
+Special Tea|350
+Tea|120
+Green Tea|150
+Green Tea Alkozay|350
+Lemon Tea|150
+Ginger Tea|150
+Mint Tea|120
+#Cold Drinks
+Hidar Vampire Kiss|550
+Fasting Hidar Vampire Kiss|600
+Iced Latte|380
+Flavored Iced Latte|450|Caramel, chocolate, hazelnut, mint, ginger or vanilla
+Fasting Iced Latte|650
+Fasting Flavored Iced Latte|700|Caramel, chocolate, hazelnut, mint or vanilla
+Iced Americano|450
+Iced Coffee|450
+Dalgona Iced Latte|500
+Iced Lemon Tea|450
+Iced Tea|380
+Mojito|450|Strawberry, lemon, ginger, watermelon or orange
+Iced Matcha|500
+Coconut Milk Iced Matcha|650
+Matcha with Strawberry|650
+Fasting Matcha with Strawberry|750
+Fasting Matcha Latte|700
+Mango Matcha Latte|650
+Iced Ube Latte|500
+Fasting Iced Ube Latte|650
+Fasting Ube Cream Matcha Latte|750
+Soft Drink|130
+Sprice|220
+Water|90
+#Juice
+Orange|600
+Mango|550
+Watermelon|550
+Avocado|550
+Lemon|550
+Strawberry|550
+Mixed Juice|600
+Extra Honey|50
+#Smoothie
+Strawberry|600
+Banana|600
+Avocado|600
+Mango Manya|600
+Flaxseed and Banana|600
+Flaxseed, Banana and Peanut Butter|600
+#Bakery
+English Cake|250
+Chapatti|280
+Fasting Baguette|250
+Brown Baguette|250
+Brioche|280
+Plain Croissant|400
+Almond Croissant|450
+Chocolate Croissant|450
+Strawberry Croissant|450
+Fasting Almond Croissant|400
+Cinnamon Roll|450
+Fasting Cinnamon Roll|400
+Marble Cake|400
+Chocolate Danish|450
+German Blinder|450
+Donut|250
+White Chocolate|450
+#Pastry
+Chocolate Crumble|550
+Trio|550
+Opera|450
+Fasting Brownie|550
+Caramel Vanilla|500
+Chocolate Fudge Slice|700
+Tiramisu Mousse|550
+Almond Milk|600
+Belgian Bliss|550
+Vanilla Strawberry Cake|550
+Hidar Cheese Velvet|550
+Strawberry Cheesecake|1350
+Cheesecake Biscoff|1350
+Cheesecake New York Style|1250
+Belgian Slice|700
+Chocolate Minifoni|500
+Minifoni|600
+Fasting Chocolate Slice|700
+Fasting Chocolate Custard|600
+Fasting Strawberry Chocolate Slice|600
+Fasting Strawberry Mousse|600
+Fasting Strawberry Compote|500
+Fasting Custard Caramel|550
+Fasting Hidar Espresso|600
+Hidar Special Chocolate Cake|800
+Hidar Vampire Cheese|1000
+Vancho|550
+Chocolate Fudge|550
+White Chocolate Slice|700
+Pistachio|600
+Eclair|450
+Old Tiramisu|500
+Blue Velvet|600
+Cookies 250g|500
+Cookies 500g|1000`;
+const S=[];D.split('\n').forEach(l=>{if(l[0]=='#'){const[t,n]=l.slice(1).split('|');S.push({t,n,i:[]})}else{const[n,p,d]=l.split('|');S.at(-1).i.push({n,p,d,f:/fasting/i.test(n)})}});
+const m=document.getElementById('m'),nav=document.getElementById('nav'),q=document.getElementById('q'),fb=document.getElementById('fast');
+const id=t=>t.toLowerCase().replace(/\W+/g,'-');
+const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const nm=i=>i.n.replace(/^fasting\s+/i,'').replace(/^./,c=>c.toUpperCase());
+m.innerHTML=S.map((s,si)=>`<section id="${id(s.t)}"><h2>${s.t}</h2>${s.n?`<p class="note">${s.n}</p>`:''}${s.i.map((i,ii)=>{i.id=si+'-'+ii;i.c=s.t;return `<div class="item" data-k="${esc((i.n+' '+(i.d||'')).toLowerCase())}" data-f="${i.f?1:0}"><div class="info"><span class="n">${esc(nm(i))}</span>${i.f?'<span class="f">ጾም</span>':''}${i.d?`<p class="d">${esc(i.d)}</p>`:''}</div><div class="side"><span class="p">${(+i.p).toLocaleString('en')}</span><span class="ctl" data-id="${i.id}"></span></div></div>`}).join('')}</section>`).join('');
+nav.innerHTML=S.map(s=>`<a href="#${id(s.t)}">${s.t}</a>`).join('');
+function filter(){const sg=document.querySelector('.sig');if(sg)sg.hidden=!!(q.value.trim()||fb.getAttribute('aria-pressed')=='true');const k=q.value.trim().toLowerCase(),f=fb.getAttribute('aria-pressed')=='true';let any=0;
+document.querySelectorAll('section:not(.sig)').forEach(sec=>{let c=0;sec.querySelectorAll('.item').forEach(e=>{const ok=e.dataset.k.includes(k)&&(!f||e.dataset.f=='1');e.hidden=!ok;c+=ok});sec.hidden=!c;any+=c});
+document.getElementById('none').style.display=any?'none':'block'}
+q.oninput=filter;fb.onclick=()=>{fb.setAttribute('aria-pressed',fb.getAttribute('aria-pressed')!='true');filter()};
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){nav.querySelectorAll('a').forEach(a=>a.classList.toggle('on',a.hash=='#'+e.target.id));const a=nav.querySelector('.on');if(a)nav.scrollTo({left:a.offsetLeft-24,behavior:'smooth'})}}),{rootMargin:'-130px 0px -70% 0px'});
+document.querySelectorAll('section').forEach(s=>io.observe(s));
+const t=document.getElementById('top');addEventListener('scroll',()=>t.classList.toggle('show',scrollY>500),{passive:true});t.onclick=()=>scrollTo({top:0});
+
+const A={};S.forEach(s=>s.i.forEach(i=>A[i.id]=i));
+let C={};try{C=JSON.parse(localStorage.getItem('hidar-order')||'{}')}catch(e){}
+Object.keys(C).forEach(k=>{if(!A[k])delete C[k]});
+const sh=document.getElementById('sh'),$=x=>document.getElementById(x),fmt=n=>n.toLocaleString('en');
+function ctl(k){const n=C[k]||0,h=n?`<span class="step"><button data-a="-1" data-id="${k}" aria-label="Remove one">&minus;</button><b>${n}</b><button data-a="1" data-id="${k}" aria-label="Add one">+</button></span>`:`<button class="add" data-a="1" data-id="${k}" aria-label="Add ${esc(A[k].n)}">+</button>`;document.querySelectorAll(`.ctl[data-id="${k}"]`).forEach(e=>e.innerHTML=h)}
+function sync(){const ks=Object.keys(C);let c=0,t=0;ks.forEach(k=>{c+=C[k];t+=C[k]*A[k].p});document.body.classList.toggle('hc',c>0);$('cart').innerHTML=`<span><span class="c">${c}</span>View order</span><span>${fmt(t)} ETB</span>`;$('tt').textContent=fmt(t)+' ETB';$('ol').innerHTML=ks.map(k=>`<div class="o"><span class="q">${C[k]}×</span><span class="t">${esc(A[k].n)}<small>${A[k].c}</small></span><span class="side"><span class="s">${fmt(C[k]*A[k].p)}</span><span class="step"><button data-a="-1" data-id="${k}" aria-label="Remove one">&minus;</button><button data-a="1" data-id="${k}" aria-label="Add one">+</button></span></span></div>`).join('');try{localStorage.setItem('hidar-order',JSON.stringify(C))}catch(e){}if(!c&&sh.open)sh.close()}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(!b)return;const k=b.dataset.id;C[k]=Math.max(0,(C[k]||0)+ +b.dataset.a);if(!C[k])delete C[k];ctl(k);sync();navigator.vibrate&&navigator.vibrate(8)});
+Object.keys(A).forEach(ctl);sync();
+$('go').onclick=()=>m.scrollIntoView({behavior:'smooth'});
+$('cart').onclick=()=>sh.showModal();
+$('cx').onclick=$('dn').onclick=()=>sh.close();
+sh.onclick=e=>{if(e.target===sh)sh.close()};
+let cl=0;$('clr').onclick=()=>{const b=$('clr');if(!cl){cl=1;b.textContent='Tap again to clear';setTimeout(()=>{cl=0;b.textContent='Clear'},3000);return}cl=0;b.textContent='Clear';const ks=Object.keys(C);C={};ks.forEach(ctl);sync()};
+$('cp').onclick=async()=>{const tb=$('tb').value.trim(),b=$('cp'),x=(tb?`Table ${tb}\n`:'')+Object.keys(C).map(k=>`${C[k]} × ${A[k].n}`).join('\n')+`\nTotal ${$('tt').textContent}`;try{await navigator.clipboard.writeText(x);b.textContent='Copied'}catch(e){b.textContent='Copy failed'}setTimeout(()=>b.textContent='Copy',1800)};
+
+const g=new Date().getHours();$('gr').textContent=(g<12?'Good morning':g<17?'Good afternoon':'Good evening')+', welcome';
+document.querySelector('#intro img').src=document.querySelector('header img').src;
+const SG=[['Breakfast','Hidar Protein'],['Cold Drinks','Hidar Vampire Kiss'],['Pastry','Hidar Vampire Cheese'],['Pastry','Hidar Special Chocolate Cake'],['Pastry','Hidar Cheese Velvet'],['Salad','Hidar Salad']].map(([c,n])=>Object.values(A).find(i=>i.c==c&&i.n==n)).filter(Boolean);
+m.insertAdjacentHTML('afterbegin',`<section class="sig" id="signatures"><h2>Hidar signatures</h2><div class="rail">${SG.map(i=>`<div class="sc"><small>${i.c}</small><b>${esc(i.n)}</b><div class="side"><span class="p">${(+i.p).toLocaleString('en')}</span><span class="ctl" data-id="${i.id}"></span></div></div>`).join('')}</div></section>`);
+nav.insertAdjacentHTML('afterbegin','<a href="#signatures">Signatures</a>');
+Object.keys(A).forEach(ctl);
+const rd=matchMedia('(prefers-reduced-motion:reduce)').matches,ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');ro.unobserve(e.target)}}),{threshold:.05});
+document.querySelectorAll('main section').forEach(x=>{if(!rd){x.classList.add('rv');ro.observe(x)}io.observe(x)});
+const intro=$('intro');
+function openUp(){if(!intro.isConnected||intro.classList.contains('go'))return;intro.classList.add('go');document.body.classList.remove('pre');setTimeout(()=>intro.remove(),1800)}
+if(rd){intro.remove();document.body.classList.remove('pre')}else{setTimeout(openUp,1700);intro.onclick=openUp}
+</script>
+</body>
+</html>
